@@ -1,0 +1,13 @@
+{
+  "display_name": "OCaml",
+  "language": "ocaml",
+  "argv": [
+    "__IOCAML_EXECUTABLE__",
+    "-log",
+    "__IOCAML_LOG__",
+    "-object-info",
+    "-completion",
+    "-connection-file",
+    "{connection_file}"
+  ]
+}
