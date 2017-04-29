@@ -1,8 +1,13 @@
 # akabe/iocaml
 
-Dockerfile for [iocaml](https://github.com/andrewray/iocaml) on [Python Jupyter](http://ipython.org/notebook.html).
+Minimal environment for ready-to-use [Jupyter notebook](http://ipython.org/notebook.html) with [IOCaml kernel](https://github.com/andrewray/iocaml).
 
 ```
-docker pull akabe/iocaml:latest
 docker run -it -p 8888:8888 akabe/iocaml
+```
+
+You can use notebooks on the host machine by
+
+```
+docker run -it -p 8888:8888 -v $(pwd):/notebooks akabe/iocaml
 ```
