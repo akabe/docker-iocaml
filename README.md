@@ -11,3 +11,11 @@ You can use notebooks on the host machine by
 ```
 docker run -it -p 8888:8888 -v $(pwd):/notebooks akabe/iocaml
 ```
+
+## Examples
+
+```
+git clone git@github.com:akabe/docker-iocaml.git
+cd docker-iocaml/examples
+docker run -it -p 8888:8888 -v $(pwd):/notebooks akabe/iocaml
+```
