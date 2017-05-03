@@ -4,7 +4,7 @@ ENV PATH $PATH:$HOME/.local/bin
 
 RUN sudo apk add --upgrade --no-cache m4 zeromq-dev libffi-dev python3-dev && \
     pip3 install --user --no-cache jupyter && \
-    opam install -y ocp-index iocaml-kernel && \
+    opam install -y lwt=2.7.1 ounit=2.0.0 ocp-index iocaml-kernel && \
     \
     rm -rf $HOME/.cache \
            $HOME/.opam/archives \
