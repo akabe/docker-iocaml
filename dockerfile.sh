@@ -32,16 +32,18 @@ EOF
 
 function print_dockerfile_alpine_script() {
     cat <<'EOF'
-RUN sudo apk add --upgrade --no-cache m4 zeromq-dev libffi-dev python3-dev && \
+RUN sudo apk add --upgrade --no-cache zeromq libffi python3 \
+                                      m4 zeromq-dev libffi-dev python3-dev && \
     \
+    pip3 install --user --no-cache jupyter && \
+    opam install -y lwt=2.7.1 ounit=2.0.0 ocp-index iocaml-kernel && \
+    \
+    sudo apk del m4 zeromq-dev libffi-dev python3-dev
 EOF
 }
 
 function print_dockerfile_common_script() {
     cat <<'EOF'
-    pip3 install --user --no-cache jupyter && \
-    opam install -y lwt=2.7.1 ounit=2.0.0 ocp-index iocaml-kernel && \
-    \
     find $HOME/.opam -regex '.*\\.\\(cmt\\|cmti\\|annot\\|byte\\)' -delete && \
     rm -rf $HOME/.cache \
            $HOME/.opam/archives \
@@ -119,13 +121,10 @@ FIRST_COMMIT=9944265c6300ea4aa65f626e4d42c1e1d3f1b77a
 
 ENVIRONMENTS=(
     'TAG=latest                OCAML=4.04.1'
-    'TAG=alpine3.5_ocaml4.06.0 OCAML=4.06.0+trunk'
     'TAG=alpine3.5_ocaml4.05.0 OCAML=4.05.0+trunk'
     'TAG=alpine3.5_ocaml4.04.1 OCAML=4.04.1'
     'TAG=alpine3.5_ocaml4.03.0 OCAML=4.03.0'
     'TAG=alpine3.5_ocaml4.02.3 OCAML=4.02.3'
-    'TAG=alpine3.5_ocaml4.01.0 OCAML=4.01.0'
-    'TAG=alpine3.5_ocaml4.00.1 OCAML=4.00.1'
 )
 
 git checkout master
