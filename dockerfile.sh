@@ -26,7 +26,7 @@ WORKDIR /notebooks
 EXPOSE 8888
 
 ENTRYPOINT [ "/entrypoint.sh" ]
-CMD ["jupyter", "notebook", "--no-browser"]
+CMD [ "jupyter", "notebook" ]
 EOF
 }
 
@@ -38,7 +38,7 @@ RUN sudo apk add --upgrade --no-cache zeromq libffi python3 \
     pip3 install --user --no-cache jupyter && \
     opam install -y lwt=2.7.1 ounit=2.0.0 ocp-index iocaml-kernel && \
     \
-    sudo apk del m4 zeromq-dev libffi-dev python3-dev
+    sudo apk del m4 zeromq-dev libffi-dev python3-dev && \
 EOF
 }
 
@@ -137,9 +137,9 @@ for env_decl in "${ENVIRONMENTS[@]}"; do
 
     # Checkout a branch
     if [[ -f ".git/refs/heads/$BRANCH" ]]; then
-       git checkout $BRANCH
+        git checkout $BRANCH
     else
-       git checkout $FIRST_COMMIT -b $BRANCH
+        git checkout $FIRST_COMMIT -b $BRANCH
     fi
 
     # Create files
@@ -160,6 +160,8 @@ for env_decl in "${ENVIRONMENTS[@]}"; do
     fi
     print_dockerfile_common_script >>Dockerfile
     print_dockerfile_footer        >>Dockerfile
+
+    chmod +x entrypoint.sh
 
     # Commit changes
     git add README.md Dockerfile entrypoint.sh .iocamlinit .jupyter .dockerignore
