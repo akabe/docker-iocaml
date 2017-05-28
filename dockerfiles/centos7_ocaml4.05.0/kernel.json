@@ -1,0 +1,13 @@
+{
+  "display_name": "OCaml 4.05.0+trunk",
+  "language": "ocaml",
+  "argv": [
+    "/home/opam/.opam/4.05.0+trunk/bin/iocaml.top",
+    "-log",
+    "/home/opam/.jupyter/iocaml.log",
+    "-object-info",
+    "-completion",
+    "-connection-file",
+    "{connection_file}"
+  ]
+}
