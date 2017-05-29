@@ -3,7 +3,7 @@ FROM akabe/ocaml:centos6_ocaml4.06.0
 ENV PATH $PATH:/home/opam/.local/bin
 
 RUN sudo yum install -y https://centos6.iuscommunity.org/ius-release.rpm && \
-    sudo yum install -y zeromq3 libffi python35u python35u-pip \
+    sudo yum install -y curl zeromq3 libffi python35u python35u-pip \
                         which gcc m4 zeromq3-devel libffi-devel python35u-devel && \
     \
     eval $(opam config env) && \
@@ -17,7 +17,6 @@ RUN sudo yum install -y https://centos6.iuscommunity.org/ius-release.rpm && \
            /home/opam/.opam/repo/default/archives \
            /home/opam/.opam/$OCAML_VERSION/build && \
     \
-    sudo yum remove -y zeromq3-devel python35u-devel && \
     sudo yum clean all
 
 RUN mkdir -p /home/opam/.jupyter && \

@@ -19,10 +19,10 @@ EOF
 
 function alpine_scripts() {
     cat <<EOF
-RUN sudo apk add --upgrade --no-cache curl make patch gcc m4 zeromq libffi python3 && \\
+RUN sudo apk add --upgrade --no-cache curl zeromq libffi python3 && \\
     sudo apk add --upgrade --no-cache \\
                  --virtual=.build-dependencies \\
-                 zeromq-dev libffi-dev python3-dev && \\
+                 m4 zeromq-dev libffi-dev python3-dev && \\
     \\
 $(iocaml_scripts pip3) && \\
     \\
@@ -33,12 +33,11 @@ EOF
 function centos7_scripts() {
     cat <<EOF
 RUN sudo yum install -y epel-release && \\
-    sudo yum install -y zeromq3 libffi python34 python34-pip \\
+    sudo yum install -y curl zeromq3 libffi python34 python34-pip \\
                         which gcc m4 zeromq3-devel libffi-devel python34-devel && \\
     \\
-$(iocaml_scripts pip3) \\
+$(iocaml_scripts pip3) && \\
     \\
-    sudo yum remove zeromq3-devel libffi-devel python34-devel && \\
     sudo yum clean all
 EOF
 }
@@ -46,12 +45,11 @@ EOF
 function centos6_scripts() {
     cat <<EOF
 RUN sudo yum install -y https://centos6.iuscommunity.org/ius-release.rpm && \\
-    sudo yum install -y zeromq3 libffi python35u python35u-pip \\
+    sudo yum install -y curl zeromq3 libffi python35u python35u-pip \\
                         which gcc m4 zeromq3-devel libffi-devel python35u-devel && \\
     \\
 $(iocaml_scripts pip3.5) && \\
     \\
-    sudo yum remove -y zeromq3-devel python35u-devel && \\
     sudo yum clean all
 EOF
 }
@@ -65,7 +63,6 @@ RUN sudo apt-get update && \\
     \\
 $(iocaml_scripts pip3) && \\
     \\
-    sudo apt-get purge -y libzmq3-dev libffi-dev python3-dev && \\
     sudo apt-get autoremove -y && \\
     sudo apt-get autoclean
 EOF
@@ -80,7 +77,6 @@ RUN sudo apt-get update && \\
     \\
 $(iocaml_scripts pip3) && \\
     \\
-    sudo apt-get purge -y libzmq3-dev libffi-dev python3-dev && \\
     sudo apt-get autoremove -y && \\
     sudo apt-get autoclean
 EOF

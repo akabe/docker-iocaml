@@ -18,7 +18,6 @@ RUN sudo apt-get update && \
            /home/opam/.opam/repo/default/archives \
            /home/opam/.opam/$OCAML_VERSION/build && \
     \
-    sudo apt-get purge -y libzmq3-dev libffi-dev python3-dev && \
     sudo apt-get autoremove -y && \
     sudo apt-get autoclean
 

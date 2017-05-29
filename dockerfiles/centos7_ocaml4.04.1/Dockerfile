@@ -3,7 +3,7 @@ FROM akabe/ocaml:centos7_ocaml4.04.1
 ENV PATH $PATH:/home/opam/.local/bin
 
 RUN sudo yum install -y epel-release && \
-    sudo yum install -y zeromq3 libffi python34 python34-pip \
+    sudo yum install -y curl zeromq3 libffi python34 python34-pip \
                         which gcc m4 zeromq3-devel libffi-devel python34-devel && \
     \
     eval $(opam config env) && \
@@ -15,9 +15,8 @@ RUN sudo yum install -y epel-release && \
     find /home/opam/.opam -regex '.*\.\(cmt\|cmti\|annot\|byte\)' -delete && \
     rm -rf /home/opam/.opam/archives \
            /home/opam/.opam/repo/default/archives \
-           /home/opam/.opam/$OCAML_VERSION/build \
+           /home/opam/.opam/$OCAML_VERSION/build && \
     \
-    sudo yum remove zeromq3-devel libffi-devel python34-devel && \
     sudo yum clean all
 
 RUN mkdir -p /home/opam/.jupyter && \

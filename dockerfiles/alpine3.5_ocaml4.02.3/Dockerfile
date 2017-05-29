@@ -2,10 +2,10 @@ FROM akabe/ocaml:alpine3.5_ocaml4.02.3
 
 ENV PATH $PATH:/home/opam/.local/bin
 
-RUN sudo apk add --upgrade --no-cache curl make patch gcc m4 zeromq libffi python3 && \
+RUN sudo apk add --upgrade --no-cache curl zeromq libffi python3 && \
     sudo apk add --upgrade --no-cache \
                  --virtual=.build-dependencies \
-                 zeromq-dev libffi-dev python3-dev && \
+                 m4 zeromq-dev libffi-dev python3-dev && \
     \
     eval $(opam config env) && \
     \
