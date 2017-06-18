@@ -8,10 +8,11 @@ function iocaml_scripts() {
     \\
     sudo ${pip} install --upgrade pip && \\
     ${pip} install --user --no-cache-dir jupyter && \\
-    opam install -y lwt=2.7.1 ounit=2.0.0 ocp-index iocaml-kernel && \\
+    opam install -y 'lwt>=3.0.0' 'ounit>=2.0.0' ocp-index iocaml-kernel && \\
     \\
     find /home/opam/.opam -regex '.*\\.\\(cmt\\|cmti\\|annot\\|byte\\)' -delete && \\
-    rm -rf /home/opam/.opam/archives \\
+    rm -rf /home/opam/.cache \\
+           /home/opam/.opam/archives \\
            /home/opam/.opam/repo/default/archives \\
            /home/opam/.opam/\$OCAML_VERSION/build
 EOF
