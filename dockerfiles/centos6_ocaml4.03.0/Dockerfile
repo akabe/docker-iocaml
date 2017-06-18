@@ -3,21 +3,21 @@ FROM akabe/ocaml:centos6_ocaml4.03.0
 ENV PATH $PATH:/home/opam/.local/bin
 
 RUN sudo yum install -y https://centos6.iuscommunity.org/ius-release.rpm && \
-    sudo yum install -y zeromq3 libffi python35u python35u-pip \
+    sudo yum install -y curl zeromq3 libffi python35u python35u-pip \
                         which gcc m4 zeromq3-devel libffi-devel python35u-devel && \
     \
     eval $(opam config env) && \
     \
     sudo pip3.5 install --upgrade pip && \
     pip3.5 install --user --no-cache-dir jupyter && \
-    opam install -y lwt=2.7.1 ounit=2.0.0 ocp-index iocaml-kernel && \
+    opam install -y 'lwt>=3.0.0' 'ounit>=2.0.0' ocp-index iocaml-kernel && \
     \
     find /home/opam/.opam -regex '.*\.\(cmt\|cmti\|annot\|byte\)' -delete && \
-    rm -rf /home/opam/.opam/archives \
+    rm -rf /home/opam/.cache \
+           /home/opam/.opam/archives \
            /home/opam/.opam/repo/default/archives \
            /home/opam/.opam/$OCAML_VERSION/build && \
     \
-    sudo yum remove -y zeromq3-devel python35u-devel && \
     sudo yum clean all
 
 RUN mkdir -p /home/opam/.jupyter && \

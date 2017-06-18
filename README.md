@@ -6,6 +6,8 @@
 
 Minimal environment for ready-to-use [Jupyter notebook](http://ipython.org/notebook.html) with [IOCaml kernel](https://github.com/andrewray/iocaml).
 
+Probably you are also interested in [akabe/iocaml-datascience](https://github.com/akabe/docker-iocaml-datascience) for practical use.
+
 ## Getting started
 
 First, launch a Jupyter server as follows.
@@ -35,14 +37,6 @@ You can create OCaml notebooks!
 Notebooks on your host machine can be mounted to a Docker container by
 
 ```
-docker run -it -p 8888:8888 -v $(pwd):/notebooks akabe/iocaml
-```
-
-### Examples
-
-```
-git clone git@github.com:akabe/docker-iocaml.git
-cd docker-iocaml/examples
 docker run -it -p 8888:8888 -v $(pwd):/notebooks akabe/iocaml
 ```
 
